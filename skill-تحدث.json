@@ -1,0 +1,254 @@
+{
+  "intents": [
+    {
+      "intent": "أنا",
+      "examples": [
+        {
+          "text": "ماهو اسمك؟"
+        },
+        {
+          "text": "من أنت؟"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "ترحيب",
+      "examples": [
+        {
+          "text": "السلام عليكم"
+        },
+        {
+          "text": "اهلا"
+        },
+        {
+          "text": "هيلو"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "تواصل",
+      "examples": [
+        {
+          "text": "كيف اتواصل مع صاحب الموقع؟"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "مشاكل",
+      "examples": [
+        {
+          "text": "لديكم مشكلة تقنية"
+        },
+        {
+          "text": "هناك مشكلة تقنية بموقعكم"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "مهمتك",
+      "examples": [
+        {
+          "text": "كيف يمكنك مساعدتي؟"
+        },
+        {
+          "text": "ماذا تفعل؟"
+        },
+        {
+          "text": "ما فائدتك؟"
+        },
+        {
+          "text": "ماهي مهمتك؟"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [
+    {
+      "entity": "sys-currency",
+      "values": [],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "sys-date",
+      "values": [],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "sys-number",
+      "values": [],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "sys-percentage",
+      "values": [],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "sys-time",
+      "values": [],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "امراض",
+      "values": [],
+      "fuzzy_match": true
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    }
+  },
+  "dialog_nodes": [
+    {
+      "type": "standard",
+      "title": "مهمة",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "مهمتي هي الردود على استفسارات العملاء ومساعدتهم وتحسين تجربتهم."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#مهمتك",
+      "dialog_node": "node_1_1626336778157",
+      "previous_sibling": "node_1_1626337322266"
+    },
+    {
+      "type": "standard",
+      "title": "التواصل ",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Empty@gmail.com هنا "
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#تواصل",
+      "dialog_node": "node_1_1626337322266",
+      "previous_sibling": "node_2_1626336704101"
+    },
+    {
+      "type": "standard",
+      "title": "تعريف",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "اسمي روب."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#أنا",
+      "dialog_node": "node_2_1626336704101",
+      "previous_sibling": "مرحبا"
+    },
+    {
+      "type": "standard",
+      "title": "السلام",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "وعليكم السلام"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#ترحيب",
+      "dialog_node": "node_7_1626271806095",
+      "previous_sibling": "node_1_1626336778157"
+    },
+    {
+      "type": "standard",
+      "title": "أي شيء آخر",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "لم أفهم، يمكنك محاولة اعادة الصياغة"
+              },
+              {
+                "text": "هل يمكنك اعادة صياغة عبارتك؟ أنا لا فهم"
+              },
+              {
+                "text": "لم أفهم قصدك"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "anything_else",
+      "dialog_node": "أي شيء آخر",
+      "previous_sibling": "node_7_1626271806095",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "title": "مرحبا",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "مرحبا، كيف يمكنني مساعدتك؟"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "welcome",
+      "dialog_node": "مرحبا"
+    }
+  ],
+  "counterexamples": [],
+  "system_settings": {
+    "disambiguation": {
+      "prompt": ":هل قصدت",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "كل ما سبق خطأ"
+    },
+    "human_agent_assist": {
+      "prompt": ":هل قصدت"
+    }
+  },
+  "learning_opt_out": false,
+  "name": "تحدث",
+  "language": "ar",
+  "description": ""
+}
